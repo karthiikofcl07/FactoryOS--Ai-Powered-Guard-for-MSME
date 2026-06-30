@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      String
+  createdAt DateTime @default(now())
+}
+
+model Factory {
+  id          String    @id @default(cuid())
+  name        String
+  timezone    String
+  electricityRate Float @default(8.0)
+  machines    Machine[]
+}
+
+model Machine {
+  id          String   @id @default(cuid())
+  factoryId   String
+  factory     Factory  @relation(fields: [factoryId], references: [id])
+  code        String
+  name        String
+  section     String
+  status      String
+  healthScore Int
+  telemetry   Telemetry[]
+}
+
+model Telemetry {
+  id          String   @id @default(cuid())
+  machineId   String
+  machine     Machine  @relation(fields: [machineId], references: [id])
+  temperature Float
+  vibration   Float
+  rpm         Int
+  voltage     Float
+  current     Float
+  power       Float
+  createdAt   DateTime @default(now())
+}
+
+model Alert {
+  id        String   @id @default(cuid())
+  type      String
+  severity  String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model InventoryItem {
+  id           String @id @default(cuid())
+  name         String
+  category     String
+  currentStock Float
+  minStock     Float
+  unit         String
+}
+
+model Report {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  content   Json
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actor     String
+  action    String
+  metadata  Json?
+  createdAt DateTime @default(now())
+}
