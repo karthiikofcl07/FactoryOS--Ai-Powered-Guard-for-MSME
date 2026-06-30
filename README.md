@@ -15,6 +15,28 @@
 
 ---
 
+## 📑 Table of Contents
+
+- [Overview](#-overview)
+- [The Problem](#-the-problem)
+- [Our Solution](#-our-solution)
+- [Vision](#-vision)
+- [Objectives](#-objectives)
+- [System Architecture](#-system-architecture)
+- [Data Flow](#-data-flow)
+- [Artificial Intelligence](#-artificial-intelligence)
+- [Digital Twin](#-digital-twin)
+- [Core Modules](#-core-modules)
+- [Database Design](#-database-design)
+- [Folder Structure](#-folder-structure)
+- [Security](#-security)
+- [Scalability](#-scalability)
+- [Business Model](#-business-model)
+- [Expected Benefits](#-expected-benefits)
+- [Conclusion](#-conclusion)
+
+---
+
 ## 📖 Overview
 
 **FactoryOS** is an enterprise-grade, AI-powered Smart Manufacturing Operating System built to accelerate digital transformation for **Micro, Small, and Medium Enterprises (MSMEs)**. It unifies production monitoring, predictive maintenance, energy optimization, inventory intelligence, workforce management, and AI-driven decision support into a single, affordable platform.
@@ -22,6 +44,50 @@
 Where traditional ERP systems simply manage business records, FactoryOS functions as the **digital brain of the factory** — continuously sensing, analyzing, predicting, and recommending.
 
 For the **MSME Idea Hackathon** prototype, FactoryOS runs on realistic simulated factory data. The architecture is intentionally designed so this simulation layer can be swapped for live data from IoT sensors, PLCs, smart energy meters, and industrial cameras — with zero changes to application logic.
+
+```mermaid
+flowchart TB
+
+subgraph FactoryOS Ecosystem
+
+A["🏭 Digital Twin"]
+
+B["🤖 AI Copilot"]
+
+C["⚙ Machine Monitoring"]
+
+D["📈 Production"]
+
+E["⚡ Energy"]
+
+F["📦 Inventory"]
+
+G["👷 Workers"]
+
+H["📊 Analytics"]
+
+I["📄 Reports"]
+
+J["🚨 Alerts"]
+
+K["🔧 Predictive Maintenance"]
+
+L["🧠 AI Engine"]
+
+end
+
+L --> A
+L --> B
+L --> C
+L --> D
+L --> E
+L --> F
+L --> G
+L --> H
+L --> I
+L --> J
+L --> K
+```
 
 ---
 
@@ -77,27 +143,197 @@ It continuously analyzes factory data to:
 
 ---
 
-## 🏗 How It Works
+## 🏗 System Architecture
 
+### Complete System Architecture
+
+```mermaid
+flowchart TB
+
+User["🏭 Factory Owner / Manager"]
+
+User --> Web["🌐 FactoryOS Web App"]
+
+Web --> Auth["🔐 Authentication"]
+
+Web --> Dashboard["📊 Dashboard"]
+
+Dashboard --> Backend["⚡ FastAPI Backend"]
+
+Backend --> AI["🧠 AI Engine"]
+
+Backend --> DB["🗄 PostgreSQL"]
+
+Backend --> WS["📡 WebSockets"]
+
+AI --> Maintenance["🔧 Predictive Maintenance"]
+
+AI --> Production["🏭 Production Intelligence"]
+
+AI --> Energy["⚡ Energy Optimization"]
+
+AI --> Inventory["📦 Inventory Forecast"]
+
+AI --> Copilot["🤖 AI Factory Copilot"]
+
+AI --> Reports["📄 Smart Reports"]
+
+DB --> Machines["⚙ Machine Data"]
+
+DB --> Workers["👷 Worker Data"]
+
+DB --> EnergyData["⚡ Energy Logs"]
+
+DB --> ProductionData["📈 Production Logs"]
+
+DB --> InventoryData["📦 Inventory"]
+
+DB --> ReportsData["📄 Reports"]
+
+Dashboard --> DigitalTwin["🏭 Digital Twin"]
+
+Dashboard --> Analytics["📊 Analytics"]
+
+Dashboard --> Alerts["🚨 Alerts"]
 ```
- IoT Sensors / PLCs / Smart Meters / Cameras   (Production)
-                     │
-        Simulated Data Layer   (Prototype)
-                     │
-                     ▼
-        ┌─────────────────────────┐
-        │      AI Engine          │
-        │  Predictive Analytics   │
-        │  Forecasting & Scoring  │
-        └─────────────────────────┘
-                     │
-                     ▼
-   Dashboards · Digital Twin · AI Copilot · Reports · Alerts
+
+### Backend Architecture
+
+```mermaid
+graph TD
+
+Frontend
+
+Frontend --> API
+
+API --> Auth
+
+API --> MachineService
+
+API --> ProductionService
+
+API --> EnergyService
+
+API --> InventoryService
+
+API --> AIService
+
+MachineService --> PostgreSQL
+
+ProductionService --> PostgreSQL
+
+EnergyService --> PostgreSQL
+
+InventoryService --> PostgreSQL
+
+AIService --> Models
 ```
 
-FactoryOS ingests continuous machine and operational data — temperature, vibration, runtime, utilization, energy consumption, production counts, inventory levels, and worker activity. The AI engine processes this into predictions and recommendations, surfaced through interactive dashboards, a live Digital Twin, a conversational AI Copilot, and automated reporting.
+### FactoryOS Module Map
 
-When deployed in a real factory, the simulated data layer is swapped for live IoT sensors, PLCs, industrial cameras, and smart energy meters — no application rewrite needed.
+```mermaid
+mindmap
+
+root((FactoryOS))
+
+Dashboard
+
+AI Copilot
+
+Digital Twin
+
+Machine Monitoring
+
+Production
+
+Inventory
+
+Energy
+
+Reports
+
+Analytics
+
+Workers
+
+Quality
+
+Maintenance
+
+Alerts
+
+Admin
+
+Settings
+
+Notifications
+
+AI Engine
+```
+
+---
+
+## 🔄 Data Flow
+
+### Complete Data Flow
+
+```mermaid
+flowchart LR
+
+A["📡 Simulated Factory Data"]
+
+A --> B["Machine Generator"]
+
+A --> C["Production Generator"]
+
+A --> D["Energy Generator"]
+
+A --> E["Inventory Generator"]
+
+B --> Backend
+
+C --> Backend
+
+D --> Backend
+
+E --> Backend
+
+Backend --> AI
+
+AI --> Dashboard
+
+Dashboard --> Owner["👨‍💼 Factory Owner"]
+```
+
+### End-to-End User Flow
+
+```mermaid
+flowchart LR
+
+Login
+
+Login --> Dashboard
+
+Dashboard --> Machines
+
+Dashboard --> Production
+
+Dashboard --> Energy
+
+Dashboard --> Inventory
+
+Dashboard --> Reports
+
+Dashboard --> Analytics
+
+Dashboard --> AI
+
+Dashboard --> Admin
+
+AI --> Reports
+
+Reports --> Download
+```
 
 ---
 
@@ -111,13 +347,66 @@ When deployed in a real factory, the simulated data layer is swapped for live Io
 | **Energy Optimization** | Analyzes consumption patterns and recommends reduction strategies |
 | **AI Recommendations** | Suggests maintenance scheduling, load reduction, capacity increases, reorder points, and shift optimization |
 
+### AI Engine Workflow
+
+```mermaid
+flowchart TD
+
+Start["Random Factory Data"]
+
+Start --> Collect["Collect Data"]
+
+Collect --> Analyze["AI Analysis"]
+
+Analyze --> Predict["Predict Machine Health"]
+
+Analyze --> Forecast["Forecast Production"]
+
+Analyze --> Optimize["Optimize Energy"]
+
+Analyze --> Inventory["Inventory Forecast"]
+
+Predict --> Dashboard
+
+Forecast --> Dashboard
+
+Optimize --> Dashboard
+
+Inventory --> Dashboard
+
+Dashboard --> AIChat["🤖 AI Copilot"]
+
+AIChat --> User
+```
+
 ### 💬 AI Factory Copilot
+
 A natural-language interface for factory owners to query the system directly:
 - *"Why did production decrease today?"*
 - *"Which machine requires maintenance?"*
 - *"Show today's electricity cost."*
 - *"Generate today's report."*
 - *"Predict tomorrow's production."*
+
+```mermaid
+flowchart TD
+
+User
+
+User --> Question
+
+Question --> LLM
+
+LLM --> Database
+
+Database --> AI
+
+AI --> Answer
+
+Answer --> Dashboard
+
+Dashboard --> User
+```
 
 ---
 
@@ -134,6 +423,34 @@ A live virtual replica of the factory floor — layout, machines, status, health
 
 Click any machine to drill into detailed operational data.
 
+```mermaid
+flowchart TB
+
+Factory
+
+Factory --> Machine1
+
+Factory --> Machine2
+
+Factory --> Machine3
+
+Factory --> Machine4
+
+Machine1 --> Green
+
+Machine2 --> Yellow
+
+Machine3 --> Red
+
+Machine4 --> Green
+
+Green --> Dashboard
+
+Yellow --> Dashboard
+
+Red --> Dashboard
+```
+
 ---
 
 ## ⚙ Core Modules
@@ -144,11 +461,89 @@ Tracks Machine ID, name, temperature, vibration, voltage, current, power consump
 ### Predictive Maintenance
 Classifies machines into **Healthy → Warning → Maintenance Required → Critical**, auto-generating maintenance schedules to minimize unplanned downtime.
 
+```mermaid
+flowchart TB
+
+Machine
+
+Machine --> Temperature
+
+Machine --> Vibration
+
+Machine --> Current
+
+Temperature --> AI
+
+Vibration --> AI
+
+Current --> AI
+
+AI --> Health
+
+Health --> Healthy
+
+Health --> Warning
+
+Health --> Critical
+
+Critical --> Alert
+
+Alert --> Maintenance
+```
+
 ### Production Intelligence
 Monitors production targets vs. actuals, efficiency, OEE, production loss, shift performance, and machine productivity — visualized through historical trend charts.
 
+```mermaid
+flowchart LR
+
+Orders
+
+Orders --> Production
+
+Production --> Inspection
+
+Inspection --> Good
+
+Inspection --> Reject
+
+Good --> Inventory
+
+Reject --> Analysis
+
+Analysis --> Dashboard
+```
+
 ### ⚡ Smart Energy Management
 Tracks machine- and department-wise consumption, daily/monthly usage, estimated electricity cost, carbon emissions, and peak-hour patterns, with AI-suggested cost-reduction strategies.
+
+```mermaid
+flowchart LR
+
+Machine1
+
+Machine2
+
+Machine3
+
+Machine4
+
+Machine1 --> Energy
+
+Machine2 --> Energy
+
+Machine3 --> Energy
+
+Machine4 --> Energy
+
+Energy --> Cost
+
+Cost --> Dashboard
+
+Dashboard --> AIRecommendation
+
+AIRecommendation --> Owner
+```
 
 ### 📦 Inventory Intelligence
 Manages raw materials, finished goods, suppliers, and stock levels with low-stock alerts and AI-predicted purchase schedules.
@@ -164,6 +559,81 @@ Real-time notifications for overheating, high vibration, production delays, inve
 
 ### 📈 Factory Health Score
 A single 0–100 score combining machine health, production efficiency, energy consumption, inventory status, worker productivity, and quality metrics — a one-glance pulse check for management.
+
+---
+
+## 🗄 Database Design
+
+```mermaid
+erDiagram
+
+USERS ||--o{ MACHINES : manages
+USERS ||--o{ REPORTS : generates
+USERS ||--o{ ALERTS : receives
+
+MACHINES ||--o{ ENERGY : consumes
+MACHINES ||--o{ MAINTENANCE : requires
+MACHINES ||--o{ PRODUCTION : produces
+
+PRODUCTION ||--o{ QUALITY : inspected
+
+INVENTORY ||--o{ SUPPLIERS : purchased_from
+
+MACHINES {
+    int id
+    string name
+    string status
+    float temperature
+    float vibration
+    float power
+}
+
+USERS {
+    int id
+    string name
+    string role
+}
+
+REPORTS {
+    int id
+    string type
+}
+
+ENERGY {
+    float consumption
+    float cost
+}
+
+PRODUCTION {
+    int total
+    int rejected
+}
+```
+
+---
+
+## 📁 Folder Structure
+
+```text
+FactoryOS
+│
+├── apps
+│   ├── web
+│   ├── backend
+│   ├── ai-engine
+│
+├── packages
+│   ├── ui
+│   ├── database
+│   ├── config
+│   ├── hooks
+│   ├── utils
+│
+├── docs
+├── docker
+├── scripts
+└── README.md
+```
 
 ---
 
