@@ -78,3 +78,53 @@ FactoryOS provides
 ✅ Production Analytics
 
 ✅ Executive Reports
+
+```mermaid
+flowchart TB
+
+User["🏭 Factory Owner / Manager"]
+
+User --> Web["🌐 FactoryOS Web App"]
+
+Web --> Auth["🔐 Authentication"]
+
+Web --> Dashboard["📊 Dashboard"]
+
+Dashboard --> Backend["⚡ FastAPI Backend"]
+
+Backend --> AI["🧠 AI Engine"]
+
+Backend --> DB["🗄 PostgreSQL"]
+
+Backend --> WS["📡 WebSockets"]
+
+AI --> Maintenance["🔧 Predictive Maintenance"]
+
+AI --> Production["🏭 Production Intelligence"]
+
+AI --> Energy["⚡ Energy Optimization"]
+
+AI --> Inventory["📦 Inventory Forecast"]
+
+AI --> Copilot["🤖 AI Factory Copilot"]
+
+AI --> Reports["📄 Smart Reports"]
+
+DB --> Machines["⚙ Machine Data"]
+
+DB --> Workers["👷 Worker Data"]
+
+DB --> EnergyData["⚡ Energy Logs"]
+
+DB --> ProductionData["📈 Production Logs"]
+
+DB --> InventoryData["📦 Inventory"]
+
+DB --> ReportsData["📄 Reports"]
+
+Dashboard --> DigitalTwin["🏭 Digital Twin"]
+
+Dashboard --> Analytics["📊 Analytics"]
+
+Dashboard --> Alerts["🚨 Alerts"]
+```
