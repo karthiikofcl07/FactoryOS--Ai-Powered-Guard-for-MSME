@@ -232,7 +232,7 @@ AIService --> Models
 ### FactoryOS Module Map
 
 ```mermaid
-mindmap
+mind map
 
 root((FactoryOS))
 
