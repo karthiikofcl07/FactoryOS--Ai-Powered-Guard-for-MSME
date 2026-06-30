@@ -232,43 +232,27 @@ AIService --> Models
 ### FactoryOS Module Map
 
 ```mermaid
-mind map
+flowchart TD
 
-root((FactoryOS))
+Root(("🏭 FactoryOS"))
 
-Dashboard
-
-AI Copilot
-
-Digital Twin
-
-Machine Monitoring
-
-Production
-
-Inventory
-
-Energy
-
-Reports
-
-Analytics
-
-Workers
-
-Quality
-
-Maintenance
-
-Alerts
-
-Admin
-
-Settings
-
-Notifications
-
-AI Engine
+Root --> Dashboard["📊 Dashboard"]
+Root --> Copilot["🤖 AI Copilot"]
+Root --> Twin["🏭 Digital Twin"]
+Root --> Monitoring["⚙ Machine Monitoring"]
+Root --> Production["📈 Production"]
+Root --> Inventory["📦 Inventory"]
+Root --> Energy["⚡ Energy"]
+Root --> Reports["📄 Reports"]
+Root --> Analytics["📊 Analytics"]
+Root --> Workers["👷 Workers"]
+Root --> Quality["✅ Quality"]
+Root --> Maintenance["🔧 Maintenance"]
+Root --> Alerts["🚨 Alerts"]
+Root --> Admin["🛠 Admin"]
+Root --> Settings["⚙ Settings"]
+Root --> Notifications["🔔 Notifications"]
+Root --> AIEngine["🧠 AI Engine"]
 ```
 
 ---
